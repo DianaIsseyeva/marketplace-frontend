@@ -1,0 +1,54 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+
+.navLinks {
+  display: flex;
+  gap: 10px;
+}
+
+.burger-menu {
+  display: none;
+}
+
+.burger-menu span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .burger-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+  }
+
+  .nav {
+    display: none;
+  }
+}
+
+.modalLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.closeIcon {
+  display: flex;
+  padding: 0;
+  margin-bottom: 20px;
+  justify-self: end;
+}
+
+.headerLine {
+  height: 23px;
+  background: #1e212c;
+}

@@ -1,0 +1,9 @@
+@use '/src/styles/variables.scss' as *;
+
+.title {
+  font-size: $lead-font-size;
+  color: $gray-800;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 16px;
+}

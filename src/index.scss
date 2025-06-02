@@ -1,0 +1,82 @@
+@use 'sass:color';
+@use './styles/variables.scss' as *;
+
+:root {
+  font-family: 'Lato', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: $gray-900;
+  background-color: $white;
+}
+
+// Typography
+h1 {
+  font-size: $h1-font-size;
+  line-height: $h1-line-height;
+}
+h2 {
+  font-size: $h2-font-size;
+  line-height: $h2-line-height;
+}
+h3 {
+  font-size: $h3-font-size;
+  line-height: $h3-line-height;
+}
+h4 {
+  font-size: $h4-font-size;
+  line-height: $h4-line-height;
+}
+h5 {
+  font-size: $h5-font-size;
+  line-height: $h5-line-height;
+}
+h6 {
+  font-size: $h6-font-size;
+  line-height: $h6-line-height;
+}
+
+a {
+  font-weight: 500;
+  color: $gray-800;
+  text-decoration: none;
+
+  &:hover {
+    color: color.adjust($gray-800, $lightness: -10%);
+  }
+}
+
+body {
+  margin: 0 auto;
+  background-color: $white;
+  color: $gray-900;
+}
+
+.container {
+  padding: 0 20px;
+  max-width: 1230px;
+  margin: 0 auto;
+}
+
+.divider {
+  height: 19px;
+  background: $primary;
+}
+
+/* Light theme */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: $gray-900;
+    background-color: $white;
+  }
+
+  a:hover {
+    color: color.adjust($gray-800, $lightness: -10%);
+  }
+}

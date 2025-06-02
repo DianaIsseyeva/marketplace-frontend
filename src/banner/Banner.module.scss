@@ -1,0 +1,55 @@
+@use '/src/styles/variables.scss' as *;
+@use '/src/styles/mixins.scss' as *;
+
+.banner {
+  height: 700px;
+  background: url('/banner.png') top / cover;
+  background-repeat: no-repeat;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: $display-1-font-size;
+  font-weight: 900;
+  margin-top: 0;
+}
+
+.lightButton {
+  @include button(transparent, $primary, $primary, $primary);
+  margin-right: 24px;
+}
+
+.darkButton {
+  @include button($primary, #145c5d, $primary, $white);
+}
+
+.wrapper {
+  padding: 100px 0 50px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: $h2-font-size;
+  }
+
+  .subtitle {
+    font-size: $h6-font-size;
+  }
+
+  .wrapper {
+    padding: 20px 0 !important;
+  }
+
+  .banner {
+    height: 350px;
+    background: url('/banner.png') 60% / cover;
+  }
+
+  .lightButton {
+    margin-bottom: 20px;
+  }
+}
