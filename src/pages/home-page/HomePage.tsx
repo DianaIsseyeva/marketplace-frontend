@@ -1,6 +1,5 @@
-import Banner from '../banner/Banner';
-import Card from '../card/Card';
-import QuickLinks from '../quick-links/QuickLinks';
+import Banner from '../../banner/Banner';
+import QuickLinks from '../../quick-links/QuickLinks';
 
 const HomePage = () => {
   return (
@@ -8,7 +7,6 @@ const HomePage = () => {
       <div className='divider'></div>
       <Banner />
       <QuickLinks />
-      <Card />
     </div>
   );
 };

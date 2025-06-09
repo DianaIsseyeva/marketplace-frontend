@@ -25,24 +25,30 @@ const Header = () => {
               <img src='/logo-icon.png' alt='logo' />
             </NavLink>
             <NavLink
-              to='/women'
+              to='/catalog/women'
               // className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : `${s.link}`)}
             >
               Женщины
             </NavLink>
             <NavLink
-              to='/men'
+              to='/catalog/men'
               // className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : `${s.link}`)}
             >
               Мужчины
             </NavLink>
+            <NavLink
+              to='/catalog/kids'
+              // className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : `${s.link}`)}
+            >
+              Дети
+            </NavLink>
           </div>
 
           <div className={s.navLinks}>
-            <NavLink to='/favorites'>
+            <NavLink to='/register'>
               <img src='/profile-icon.png' alt='profile icon' />
             </NavLink>
-            <NavLink to='/profile'>
+            <NavLink to='/favorites'>
               <img src='/heart-icon.png' alt='heart icon' />
             </NavLink>
             <NavLink to='/cart'>
@@ -70,21 +76,27 @@ const Header = () => {
           </button>
           <div className={s.modalLinks}>
             <NavLink
-              to='/women'
+              to='/catalog/women'
               // className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : `${s.link}`)}
             >
               Женщины
             </NavLink>
             <NavLink
-              to='/men'
+              to='/catalog/men'
               // className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : `${s.link}`)}
             >
               Мужчины
             </NavLink>
-            <NavLink to='/favorites'>
+            <NavLink
+              to='/catalog/kids'
+              // className={({ isActive }) => (isActive ? `${s.active} ${s.link}` : `${s.link}`)}
+            >
+              Дети
+            </NavLink>
+            <NavLink to='/register'>
               <img src='/profile-icon.png' alt='profile icon' />
             </NavLink>
-            <NavLink to='/profile'>
+            <NavLink to='/favorites'>
               <img src='/heart-icon.png' alt='heart icon' />
             </NavLink>
             <NavLink to='/cart'>

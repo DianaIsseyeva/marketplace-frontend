@@ -1,7 +1,15 @@
+@use '/src/styles/variables.scss' as *;
+
 .cardWrap {
   position: relative;
   height: 413px;
-  width: 285px;
+  width: 100%;
+  display: block;
+}
+
+img {
+  width: 100%;
+  border-radius: 4px;
 }
 
 .stars {
@@ -30,4 +38,18 @@
     width: 16px;
     height: 16px;
   }
+}
+
+.title {
+  font-size: $large-font-size;
+  font-weight: 400;
+  color: $gray-800;
+  margin: 16px 0 8px;
+}
+
+.price {
+  font-size: $h4-font-size;
+  font-weight: 700;
+  color: $gray-900;
+  margin-top: 0;
 }

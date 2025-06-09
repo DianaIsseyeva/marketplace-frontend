@@ -1,0 +1,47 @@
+@use '/src/styles/variables.scss' as *;
+@use '/src/styles/mixins.scss' as *;
+
+form {
+  max-width: 390px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.title {
+  color: $gray-900;
+  font-size: 28px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.text {
+  color: $gray-700;
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 390px;
+  margin: 24px auto;
+  text-align: center;
+}
+
+.saveButton {
+  @include button($primary, $primary-2, $primary, $white);
+}
+
+.link {
+  color: $primary;
+}
