@@ -33,7 +33,6 @@ const CatalogPage = () => {
             title={product.title}
             price={product.price}
             image={product.image}
-            isFavorite={product.isFavorite}
             rating={product.rating}
           />
         </div>
