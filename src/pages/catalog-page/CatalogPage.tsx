@@ -22,7 +22,8 @@ const CatalogPage = () => {
       }
     };
     fetchProducts();
-  }, []);
+  }, [category]);
+
   return (
     <div className={s.productWrap}>
       {products.map((product: ProductType) => (
