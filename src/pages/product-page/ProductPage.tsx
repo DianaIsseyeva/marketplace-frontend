@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Rating from '../../rating/Rating';
 import { ProductType } from '../../types/Product-type';
 import s from './Product.module.scss';
 
@@ -37,19 +38,29 @@ const ProductPage = () => {
 
   return (
     <div className='container'>
-      <p>{product.title}</p>
+      <p className={s.title}>{product.title}</p>
       <div className={s.card}>
         <div>
           <img src={product.image}></img>
         </div>
 
-        <div>
-          <p>{product.price}</p>
-          <p>{product.rating}</p>
-
-          <button>1</button>
-          <button>add to card</button>
-          <button>favorite</button>
+        <div style={{ position: 'relative' }}>
+          <p className={s.price}>$ {product.price}</p>
+          <Rating rating={product.rating} />
+          <p>
+            <b>Описание:</b> {product.description}
+          </p>
+          <div className={s.btnWrap}>
+            <input type='number' defaultValue={1} className={s.qty} min={1} />
+            <button className={s.btnCard}>
+              <img src='/white-cart-icon.png' style={{ width: '15px', marginRight: '10px' }} />
+              add to card
+            </button>
+            <button className={s.btnFavorite}>
+              <img src='/heart-icon.png' style={{ width: '15px', marginRight: '10px' }} />
+              favorite
+            </button>
+          </div>
         </div>
       </div>
     </div>
