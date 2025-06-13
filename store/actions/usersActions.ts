@@ -1,6 +1,6 @@
 import axios from 'axios';
 import axiosApi from '../../axiosApi';
-import { AppDispatch, RootState } from '../index';
+import type { AppDispatch, RootState } from '../index';
 import {
   loginUserFailure,
   loginUserRequest,
