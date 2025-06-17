@@ -9,6 +9,7 @@ import {
   registerUserFailure,
   registerUserRequest,
   registerUserSuccess,
+  toggleFavorite,
 } from '../reducers/usersSlice';
 export interface User {
   username: string;
@@ -58,3 +59,35 @@ export const logoutUserAsync = () => async (dispatch: AppDispatch, getState: () 
   }
   dispatch(logoutUser());
 };
+
+export const toggleFavoriteAsync =
+  (productId: string) => async (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState();
+    const user = state.users.user;
+    if (!user || !user.token) return;
+    const method = user.favorites.includes(productId) ? 'delete' : 'post';
+    try {
+      const data = {
+        userId: user._id,
+      };
+      await axios({
+        method,
+        url: `http://localhost:8000/favorites/${productId}`,
+        data,
+      });
+      dispatch(toggleFavorite(productId));
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const errMsg = error.response?.data?.message || error.message;
+        if (errMsg.includes('jwt expired')) {
+          alert('Сессия истекла. Пожалуйста, авторизуйтесь еще раз.');
+          dispatch(logoutUserAsync());
+          localStorage.removeItem('state');
+          return;
+        }
+        alert(`Ошибка: ${errMsg}`);
+      } else {
+        console.error(error);
+      }
+    }
+  };

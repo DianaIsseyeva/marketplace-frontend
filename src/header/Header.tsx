@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import type { RootState } from '../../store';
 import s from './Header.module.scss';
 
 const customStyles = {
@@ -15,6 +17,8 @@ const customStyles = {
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = useSelector((state: RootState) => state.users.user);
+
   return (
     <div>
       <div className={s.headerLine}></div>
@@ -48,8 +52,9 @@ const Header = () => {
             <NavLink to='/register'>
               <img src='/profile-icon.png' alt='profile icon' />
             </NavLink>
-            <NavLink to='/favorites'>
+            <NavLink to='/favorites' className={s.link}>
               <img src='/heart-icon.png' alt='heart icon' />
+              {user?.favorites.length}
             </NavLink>
             <NavLink to='/cart'>
               <img src='/cart-icon.png' alt='cart icon' />
@@ -96,8 +101,9 @@ const Header = () => {
             <NavLink to='/register'>
               <img src='/profile-icon.png' alt='profile icon' />
             </NavLink>
-            <NavLink to='/favorites'>
+            <NavLink to='/favorites' className={s.link}>
               <img src='/heart-icon.png' alt='heart icon' />
+              {user?.favorites.length}
             </NavLink>
             <NavLink to='/cart'>
               <img src='/cart-icon.png' alt='cart icon' />

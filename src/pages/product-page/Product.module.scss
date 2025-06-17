@@ -32,8 +32,16 @@
 .btnCard {
   @include button($primary, $primary-2, $primary, $white);
 }
+
 .btnFavorite {
   @include button(transparent, $primary, $primary, $primary);
   display: flex;
   align-items: center;
+}
+
+/* Chrome, Safari, Edge — показываем стрелки */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: auto;
+  margin: 0;
 }
