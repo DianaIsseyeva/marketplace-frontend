@@ -18,8 +18,7 @@ const CartPage = () => {
         if (!user || user.cart.length === 0) return;
 
         // Собираем массив productId из user.cart
-        const ids = user.cart.map((item: CartItem) => item.product);
-
+        const ids = cart.map((item: CartItem) => item.product);
         const response = await axiosApi.post('/products/by-ids', { ids });
         setProducts(response.data);
       } catch (error) {
