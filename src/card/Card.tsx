@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import type { AppDispatch, RootState } from '../../store';
-import { toggleFavoriteAsync } from '../../store/actions/usersActions';
+import { removeFromCartAsync, toggleFavoriteAsync } from '../../store/actions/usersActions';
 import Rating from '../rating/Rating';
 import type { ProductType } from '../types/Product-type';
 import s from './Card.module.scss';
@@ -21,12 +21,18 @@ const Card: FC<Omit<ProductType, 'category'>> = ({ _id, rating, title, price, im
 
   const dispatch = useDispatch<AppDispatch>();
   const isFavorite = useSelector((state: RootState) => state.users.user?.favorites.includes(_id));
+  const navigate = useNavigate();
 
   const addToFavorite = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(toggleFavoriteAsync(_id));
+    dispatch(toggleFavoriteAsync(_id, navigate));
   };
 
+  const handleRemoveFromCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log(_id);
+    dispatch(removeFromCartAsync(_id, navigate));
+  };
   return (
     <NavLink className={s.cardWrap} to={`/catalog/product/${_id}`}>
       <Rating rating={rating} />
@@ -44,7 +50,7 @@ const Card: FC<Omit<ProductType, 'category'>> = ({ _id, rating, title, price, im
       >
         <p className={s.title}>{title}</p>
         {location.pathname.includes('cart') && (
-          <button className={s.binBtn}>
+          <button className={s.binBtn} onClick={handleRemoveFromCart}>
             <img src={bin} alt='bin' />
           </button>
         )}

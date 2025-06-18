@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import type { AppDispatch, RootState } from '../../../store';
 import { handleAddToCartAsync, toggleFavoriteAsync } from '../../../store/actions/usersActions';
 import Rating from '../../rating/Rating';
@@ -20,6 +20,7 @@ const ProductPage = () => {
     rating: 0,
   });
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const isFavorite = useSelector((state: RootState) =>
     state.users.user?.favorites.includes(product._id)
   );
@@ -43,7 +44,7 @@ const ProductPage = () => {
   }, [id]);
 
   const handleToggleFavorite = async () => {
-    dispatch(toggleFavoriteAsync(product._id));
+    dispatch(toggleFavoriteAsync(product._id, navigate));
   };
 
   const handleAddToCart = async () => {
@@ -51,7 +52,7 @@ const ProductPage = () => {
     const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
 
     if (!isNaN(quantity) && quantity > 0) {
-      dispatch(handleAddToCartAsync(product._id, quantity));
+      dispatch(handleAddToCartAsync(product._id, quantity, navigate));
     } else {
       alert('Введите корректное количество');
     }

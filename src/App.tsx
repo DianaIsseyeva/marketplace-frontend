@@ -3,12 +3,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { store } from '../store';
 import './App.scss';
 import Layout from './layout/Layout';
+import CartPage from './pages/cart/CartPage';
 import CatalogPage from './pages/catalog-page/CatalogPage';
+import FavoritePage from './pages/favorite-page/FavoritePage';
 import HomePage from './pages/home-page/HomePage';
 import ProductPage from './pages/product-page/ProductPage';
 import RegisterPage from './pages/register/RegisterPage';
 import SignInPage from './pages/sign-in/SignIn';
-import CartPage from './pages/cart/CartPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/login' element={<SignInPage />} />
             <Route path='/cart' element={<CartPage />} />
+            <Route path='/favorites' element={<FavoritePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -63,9 +63,13 @@ export const logoutUserAsync = () => async (dispatch: AppDispatch, getState: () 
 };
 
 export const toggleFavoriteAsync =
-  (productId: string) => async (dispatch: AppDispatch, getState: () => RootState) => {
+  (productId: string, navigate: (path: string) => void) =>
+  async (dispatch: AppDispatch, getState: () => RootState) => {
     const user = getState().users.user;
-    if (!user || !user.token) return;
+    if (!user || !user.token) {
+      navigate('/login');
+      return;
+    }
     const method = user.favorites.includes(productId) ? 'delete' : 'post';
     try {
       const data = {
@@ -94,11 +98,14 @@ export const toggleFavoriteAsync =
   };
 
 export const handleAddToCartAsync =
-  (productId: string, quantity: number) =>
+  (productId: string, quantity: number, navigate: (path: string) => void) =>
   async (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState();
     const user = state.users.user;
-    if (!user || !user.token) return;
+    if (!user || !user.token) {
+      navigate('/login');
+      return;
+    }
     try {
       const response = await axios.post(
         `http://localhost:8000/cart/${productId}`,
@@ -106,9 +113,51 @@ export const handleAddToCartAsync =
         { headers: { Authorization: user.token } }
       );
       const newCart: CartItem[] = response.data.cart;
-
       dispatch(setCart(newCart));
     } catch (error) {
-      console.error(error);
+      if (axios.isAxiosError(error)) {
+        const errMsg = error.response?.data?.message || error.message;
+        if (errMsg.includes('jwt expired')) {
+          alert('Сессия истекла. Пожалуйста, авторизуйтесь еще раз.');
+          dispatch(logoutUserAsync());
+          localStorage.removeItem('state');
+          return;
+        }
+        alert(`Ошибка: ${errMsg}`);
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
+export const removeFromCartAsync =
+  (productId: string, navigate: (path: string) => void) =>
+  async (dispatch: AppDispatch, getState: () => RootState) => {
+    const user = getState().users.user;
+    if (!user || !user.token) {
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const response = await axios.delete(`http://localhost:8000/cart/${productId}`, {
+        headers: { Authorization: user.token },
+      });
+
+      const updatedCart: CartItem[] = response.data.cart;
+      dispatch(setCart(updatedCart));
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const errMsg = error.response?.data?.message || error.message;
+        if (errMsg.includes('jwt expired')) {
+          alert('Сессия истекла. Пожалуйста, авторизуйтесь еще раз.');
+          dispatch(logoutUserAsync());
+          localStorage.removeItem('state');
+          return;
+        }
+        alert(`Ошибка: ${errMsg}`);
+      } else {
+        console.error(error);
+      }
     }
   };
