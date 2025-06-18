@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { ProductType } from '../../src/types/Product-type';
 
-interface CartItem {
+export interface CartItem {
   product: ProductType;
   quntity: number;
   _id: string;
@@ -40,10 +40,11 @@ const usersSlice = createSlice({
       state.error = null;
       state.registered = false;
     },
-    registerUserSuccess(state) {
+    registerUserSuccess(state, action: PayloadAction<User>) {
       state.loading = false;
       state.registered = true;
       state.error = null;
+      state.user = action.payload;
     },
     registerUserFailure(state, action: PayloadAction<string>) {
       state.loading = false;
@@ -78,6 +79,11 @@ const usersSlice = createSlice({
         }
       }
     },
+    setCart(state, action: PayloadAction<CartItem[]>) {
+      if (state.user) {
+        state.user.cart = action.payload;
+      }
+    },
   },
 });
 
@@ -90,6 +96,7 @@ export const {
   loginUserFailure,
   logoutUser,
   toggleFavorite,
+  setCart,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

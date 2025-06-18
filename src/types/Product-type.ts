@@ -6,5 +6,4 @@ export type ProductType = {
   image: string;
   rating: number;
   category: string;
-  isFavorite: boolean;
 };

@@ -44,7 +44,7 @@ img {
   font-size: $large-font-size;
   font-weight: 400;
   color: $gray-800;
-  margin: 16px 0 8px;
+  margin: 0;
 }
 
 .price {
@@ -52,4 +52,13 @@ img {
   font-weight: 700;
   color: $gray-900;
   margin-top: 0;
+}
+
+.binBtn {
+  border-color: transparent;
+  background: white;
+  image {
+    width: 16px;
+    height: 16px;
+  }
 }

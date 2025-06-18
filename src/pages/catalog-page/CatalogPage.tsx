@@ -15,22 +15,25 @@ const CatalogPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const endpointForRegistered = category
-          ? `http://localhost:8000/products?category=${category}`
-          : 'http://localhost:8000/products';
+        // const endpointForRegistered = category
+        //   ? `http://localhost:8000/products?category=${category}`
+        //   : 'http://localhost:8000/products';
         const endpointForAll = category
           ? `http://localhost:8000/products/catalog?category=${category}`
           : 'http://localhost:8000/products/catalog';
 
+        const response = await axios.get<ProductType[]>(endpointForAll);
         if (!user) {
-          const response = await axios.get<ProductType[]>(endpointForAll);
           setProducts(response.data);
-        } else if (user?.token) {
-          const response = await axios.get<ProductType[]>(endpointForRegistered, {
-            headers: { Authorization: user?.token },
-          });
-          setProducts(response.data);
+        } else {
+          const productsWithFavorites = response.data.map(product => ({
+            ...product,
+            isFavorite: user.favorites.includes(product._id.toString()),
+          }));
+          setProducts(productsWithFavorites);
         }
+
+        setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -49,7 +52,6 @@ const CatalogPage = () => {
             price={product.price}
             image={product.image}
             rating={product.rating}
-            isFavorite={product.isFavorite}
           />
         </div>
       ))}
