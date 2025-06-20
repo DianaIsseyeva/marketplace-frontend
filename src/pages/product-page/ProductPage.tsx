@@ -50,7 +50,7 @@ const ProductPage = () => {
   const handleAddToCart = async () => {
     const qtyInput = document.querySelector('input[type="number"]') as HTMLInputElement | null;
     const quantity = qtyInput ? parseInt(qtyInput.value) : 1;
-
+    console.log(quantity);
     if (!isNaN(quantity) && quantity > 0) {
       dispatch(handleAddToCartAsync(product._id, quantity, navigate));
     } else {

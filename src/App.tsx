@@ -5,6 +5,7 @@ import './App.scss';
 import Layout from './layout/Layout';
 import CartPage from './pages/cart/CartPage';
 import CatalogPage from './pages/catalog-page/CatalogPage';
+import CheckoutPage from './pages/checkout-page/CheckoutPage';
 import FavoritePage from './pages/favorite-page/FavoritePage';
 import HomePage from './pages/home-page/HomePage';
 import ProductPage from './pages/product-page/ProductPage';
@@ -25,6 +26,7 @@ function App() {
             <Route path='/login' element={<SignInPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/favorites' element={<FavoritePage />} />
+            <Route path='/checkout' element={<CheckoutPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

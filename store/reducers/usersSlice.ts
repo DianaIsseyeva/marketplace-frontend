@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export interface CartItem {
   product: string;
-  quntity: number;
+  quantity: number;
   _id: string;
 }
 export interface User {
@@ -83,6 +83,11 @@ const usersSlice = createSlice({
         state.user.cart = action.payload;
       }
     },
+    clearCart(state) {
+      if (state.user) {
+        state.user.cart = [];
+      }
+    },
   },
 });
 
@@ -96,6 +101,7 @@ export const {
   logoutUser,
   toggleFavorite,
   setCart,
+  clearCart,
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

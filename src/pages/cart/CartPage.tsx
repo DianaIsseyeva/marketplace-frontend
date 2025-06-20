@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import axiosApi from '../../../axiosApi';
 import type { RootState } from '../../../store';
 import type { CartItem } from '../../../store/reducers/usersSlice';
@@ -34,20 +35,32 @@ const CartPage = () => {
     fetchCart();
   }, [cart, user]);
 
+  const navigate = useNavigate();
+
   return (
     <div style={{ maxWidth: '285px' }}>
       {cart.length > 0 ? (
-        products.map((product: ProductType) => (
-          <div key={product._id}>
-            <Card
-              _id={product._id}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-              rating={product.rating}
-            />
-          </div>
-        ))
+        <div>
+          {products.map((product: ProductType) => {
+            const cartItem = cart.find((item: CartItem) => item.product === product._id);
+            const quantity = cartItem?.quantity || 1;
+
+            return (
+              <div key={product._id}>
+                <Card
+                  _id={product._id}
+                  title={product.title}
+                  price={product.price}
+                  image={product.image}
+                  rating={product.rating}
+                  quantity={quantity}
+                />
+              </div>
+            );
+          })}
+
+          <button onClick={() => navigate('/checkout')}>Оформить корзину</button>
+        </div>
       ) : (
         <p>Ваша корзина пуста</p>
       )}

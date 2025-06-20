@@ -10,7 +10,11 @@ import heartFilled from '/Heart_filled.svg';
 import bin from '/bin.svg';
 import heartEmpty from '/heart-icon.png';
 
-const Card: FC<Omit<ProductType, 'category'>> = ({ _id, rating, title, price, image }) => {
+type CardProps = Omit<ProductType, 'category'> & {
+  quantity?: number;
+};
+
+const Card: FC<CardProps> = ({ _id, rating, title, price, image, quantity }) => {
   let cardImage = '/clothes.png';
   const apiURL = 'http://localhost:8000';
   const location = useLocation();
@@ -50,9 +54,12 @@ const Card: FC<Omit<ProductType, 'category'>> = ({ _id, rating, title, price, im
       >
         <p className={s.title}>{title}</p>
         {location.pathname.includes('cart') && (
-          <button className={s.binBtn} onClick={handleRemoveFromCart}>
-            <img src={bin} alt='bin' />
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ fontWeight: 500 }}>x{quantity}</span>
+            <button className={s.binBtn} onClick={handleRemoveFromCart}>
+              <img src={bin} alt='bin' />
+            </button>
+          </div>
         )}
       </div>
       <p className={s.price}>${price}</p>

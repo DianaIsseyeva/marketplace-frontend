@@ -2,6 +2,7 @@ import axios from 'axios';
 import axiosApi from '../../axiosApi';
 import type { AppDispatch, RootState } from '../index';
 import {
+  clearCart,
   loginUserFailure,
   loginUserRequest,
   loginUserSuccess,
@@ -161,3 +162,17 @@ export const removeFromCartAsync =
       }
     }
   };
+
+export const clearCartAsync = () => async (dispatch: AppDispatch, getState: () => RootState) => {
+  const user = getState().users.user;
+  if (!user || !user.token) return;
+
+  try {
+    await axios.delete('http://localhost:8000/cart', {
+      headers: { Authorization: user.token },
+    });
+    dispatch(clearCart());
+  } catch (error) {
+    console.error('Ошибка при очистке корзины:', error);
+  }
+};
