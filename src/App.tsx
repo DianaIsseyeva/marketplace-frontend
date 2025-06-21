@@ -11,6 +11,8 @@ import HomePage from './pages/home-page/HomePage';
 import ProductPage from './pages/product-page/ProductPage';
 import RegisterPage from './pages/register/RegisterPage';
 import SignInPage from './pages/sign-in/SignIn';
+import PrivateRoute from './private-route/PrivateRoute';
+import AdminPage from './pages/admin-page/AdminPage';
 
 function App() {
   return (
@@ -27,6 +29,14 @@ function App() {
             <Route path='/cart' element={<CartPage />} />
             <Route path='/favorites' element={<FavoritePage />} />
             <Route path='/checkout' element={<CheckoutPage />} />
+            <Route
+              path='/admin'
+              element={
+                <PrivateRoute role='admin'>
+                  <AdminPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
