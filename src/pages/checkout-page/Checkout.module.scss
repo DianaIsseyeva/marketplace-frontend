@@ -1,0 +1,56 @@
+.checkout {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.itemRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.itemInfo {
+  flex-grow: 1;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sidebar {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.promo {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.completeBtn {
+  margin-top: 16px;
+  background: #00695c;
+  color: white;
+  padding: 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}

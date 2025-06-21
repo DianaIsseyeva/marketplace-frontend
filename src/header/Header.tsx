@@ -48,6 +48,7 @@ const Header = () => {
           </div>
 
           <div className={s.navLinks}>
+            {user && <p>Hi, {user?.username}</p>}
             <NavLink to='/register'>
               <img src='/profile-icon.png' alt='profile icon' />
             </NavLink>
