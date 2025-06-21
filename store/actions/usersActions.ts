@@ -24,7 +24,7 @@ export const registerUserAsync = (userData: User) => async (dispatch: AppDispatc
   dispatch(registerUserRequest());
   try {
     const response = await axiosApi.post('/users', userData);
-    dispatch(registerUserSuccess(response.data));
+    dispatch(registerUserSuccess(response.data.user));
   } catch (error) {
     let errorMessage = 'Some error';
     if (axios.isAxiosError(error)) {

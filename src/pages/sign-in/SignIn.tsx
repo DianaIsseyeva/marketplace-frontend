@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -23,10 +22,7 @@ const SignInPage = () => {
           password,
         };
 
-        const response = await axios.post('http://localhost:8000/users/sessions', user);
         dispatch(loginUserAsync(user));
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
         navigate('/');
       } else {
         alert('Please fill in all fields');
