@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { store } from '../store';
 import './App.scss';
 import Layout from './layout/Layout';
+import AdminPage from './pages/admin-page/AdminPage';
 import CartPage from './pages/cart/CartPage';
 import CatalogPage from './pages/catalog-page/CatalogPage';
 import CheckoutPage from './pages/checkout-page/CheckoutPage';
@@ -12,7 +13,7 @@ import ProductPage from './pages/product-page/ProductPage';
 import RegisterPage from './pages/register/RegisterPage';
 import SignInPage from './pages/sign-in/SignIn';
 import PrivateRoute from './private-route/PrivateRoute';
-import AdminPage from './pages/admin-page/AdminPage';
+import SellerPage from './pages/seller-page/SellerPage';
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
               element={
                 <PrivateRoute role='admin'>
                   <AdminPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/seller'
+              element={
+                <PrivateRoute role='seller'>
+                  <SellerPage />
                 </PrivateRoute>
               }
             />
